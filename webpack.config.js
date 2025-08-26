@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
   } else {
     // Built-in clients.
     entry = {
-      'example': { import: './clients/example/index.js', filename: 'clients/example.min.js' },
+      'example': { import: './clients/example/index.js', filename: 'example/example.min.js' },
       'downgrader': { import: './clients/downgrader/index.js', filename: 'clients/downgrader.min.js' },
       'map': { import: './clients/map/index.js', filename: 'clients/map.min.js' },
       'mdlx': { import: './clients/mdlx/index.js', filename: 'clients/mdlx.min.js' },
@@ -56,6 +56,9 @@ module.exports = (env, argv) => {
       minimizer: [new TerserPlugin({
         extractComments: false,
       })],
+    },
+    output: {
+      path: __dirname + '/clients',
     },
   };
 };

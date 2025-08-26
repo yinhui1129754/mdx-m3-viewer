@@ -1,15 +1,58 @@
 ﻿<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>MDX Example</title>
     <meta charset="utf-8" />
-</head>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
 
-<body>
-    <canvas id="canvas"></canvas>
+  <style></style>
+  <body>
+    <div class="parent">
+      <div class="head">
+        <div class="pagination-container" id="pageCont">
+          <button class="pagination-button" id="prevPage">
+            <i class="fas fa-chevron-left"></i>
+            <span>上一页</span>
+          </button>
 
-    <script src="/clients/example.min.js"></script>
-</body>
+          <div class="pagination-info">
+            <span>第</span>
+            <input type="number" class="page-input" id="showNowPage" />
+            <span>页，共 <span id="allPage">12</span> 页</span>
+          </div>
 
+          <div class="divider"></div>
+
+          <div class="page-size-selector">
+            <span>每页显示：</span>
+            <select id="changePageSize" class="page-size-select">
+              <option value="5">5 条</option>
+              <option value="10">10 条</option>
+            </select>
+          </div>
+
+          <button class="pagination-button" id="nextPage">
+            <span>下一页</span>
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="content">
+        <div class="card-container" id="view-content">
+          <!-- 卡片1 -->
+          <!-- <div class="card">
+            <div class="card-view">01</div>
+            <div class="card-desc">
+              <h3>探索</h3>
+              <p>发现新的可能性，开拓未知的领域</p>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- <canvas id="canvas"></canvas> -->
+
+    <script src="./example.min.js"></script>
+  </body>
 </html>

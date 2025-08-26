@@ -1,2 +1,4 @@
 node_modules
 dist
+clients/clients
+clients/example/example.min.js

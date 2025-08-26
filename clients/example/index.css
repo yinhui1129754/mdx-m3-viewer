@@ -1,0 +1,183 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+.parent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.head {
+  width: 100%;
+  height: 70px;
+}
+.content {
+  width: 100%;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+/* 父容器 - 关键是添加了flex-wrap: wrap */
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* 超出宽度时自动换行 */
+  gap: 20px; /* 卡片间距 */
+  /* padding: 20px; */
+  background: #fff;
+  /* border-radius: 10px; */
+  /* box-shadow: 0 2px 8px rgba(0,0,0,0.1); */
+}
+
+.card {
+  width: 250px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.card-view {
+  height: 180px;
+  background: linear-gradient(135deg, #4a90e2 0%, #5c6bc0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.card-desc {
+  height: 120px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.card-desc h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.card-desc p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+.pagination-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination-button {
+  background-color: #f0f2f5;
+  border: none;
+  border-radius: 6px;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination-button:hover {
+  background-color: #e4e6eb;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f0f2f5;
+}
+
+.pagination-info {
+  color: #666;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-input {
+  width: 50px;
+  height: 34px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.page-input:focus {
+  outline: none;
+  border-color: #4d90fe;
+  box-shadow: 0 0 0 2px rgba(77, 144, 254, 0.2);
+}
+
+.page-size-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.page-size-select {
+  height: 34px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 8px;
+  background-color: #fff;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.page-size-select:focus {
+  outline: none;
+  border-color: #4d90fe;
+  box-shadow: 0 0 0 2px rgba(77, 144, 254, 0.2);
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background-color: #eee;
+  margin: 0 8px;
+}
+
+@media (max-width: 600px) {
+  .pagination-container {
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .pagination-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .pagination-info,
+  .page-size-selector {
+    font-size: 13px;
+  }
+
+  .page-input,
+  .page-size-select {
+    height: 30px;
+  }
+}
