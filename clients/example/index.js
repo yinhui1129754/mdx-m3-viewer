@@ -26,6 +26,39 @@ class UseRenderObject {
   getItem(name) {
     return this.items.find(item => item.item.name === name)
   }
+  getNoModelItem() {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].showModel === false) {
+        return this.items[i];
+      }
+    }
+    return null;
+  }
+  setItemShowView(item, pathItem) {
+    item.hContent.innerHTML = pathItem.showName
+    item.pContent.innerHTML = pathItem.path
+    item.pContent.setAttribute("title", pathItem.path)
+    item.item = pathItem
+  }
+  showChecked(pathItem) {
+    var item = this.getItem(pathItem.name)
+    if (item) {
+      item.check.checked = true
+    }
+  }
+  removeAllCheck() {
+    for (let i = 0; i < this.items.length; i++) {
+      this.items[i].check.checked = false
+    }
+  }
+
+  updateViewCheck() {
+    var arrs = window.top.ifc.getSelectModelArrs()
+    this.removeAllCheck()
+    for (var i = 0; i < arrs.length; i++) {
+      this.showChecked(arrs[i])
+    }
+  }
   /**
    * {
    *  path:string //完整路径
@@ -42,9 +75,26 @@ class UseRenderObject {
       desBox: document.createElement("div"),
       hContent: document.createElement("h3"),
       pContent: document.createElement("p"),
+      checkContent: document.createElement("div"),
+      check: document.createElement("input"),
       item: item
     }
 
+
+    var domShow = false;
+    Object.defineProperty(domItem, 'showModel', {
+      get: () => {
+        return domShow
+      },
+      set: function (val) {
+        domShow = val;
+        if (val) {
+          domItem.itemNode.style.display = "block";
+        } else {
+          domItem.itemNode.style.display = "none";
+        }
+      }
+    })
     domItem.itemNode.setAttribute("class", "card")
     domItem.canvasBox.setAttribute("class", "card-view")
     domItem.desBox.setAttribute("class", "card-desc")
@@ -52,6 +102,22 @@ class UseRenderObject {
     domItem.itemNode.appendChild(domItem.desBox);
     domItem.desBox.appendChild(domItem.hContent);
     domItem.desBox.appendChild(domItem.pContent);
+    domItem.desBox.appendChild(domItem.checkContent);
+    domItem.checkContent.innerHTML = "<label style='font-size:16px;'>勾选选择</label>"
+    domItem.checkContent.appendChild(domItem.check)
+
+    domItem.check.setAttribute("type", "checkbox")
+
+    domItem.check.onchange = function (e) {
+      if (domItem.check.checked) {
+        window.top.ifc.addSelectModel(item)
+      } else {
+        window.top.ifc.removeSelectModel(item)
+      }
+
+    }
+
+
     var canvas = document.createElement("canvas");
 
     canvas.width = 250
@@ -78,6 +144,7 @@ class UseRenderObject {
     viewer.addHandler(handlers.dds);
     this.items.push(domItem)
     domItem.showModel = false;
+
     this.parentNode.appendChild(domItem.itemNode)
     return domItem;
   }

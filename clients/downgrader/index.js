@@ -22,10 +22,11 @@ document.addEventListener('drop', e => {
     const map = new War3Map();
 
     map.load(buffer);
-
+    // return;
     const w3i = new War3MapW3i();
     w3i.load(map.get('war3map.w3i').arrayBuffer());
 
+    console.log(map, w3i)
     if (w3i.version > 25) {
       console.log(`war3map.w3i version ${w3i.version} => 25`);
 
